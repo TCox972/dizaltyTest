@@ -1,9 +1,3 @@
 # dizaltyTest
 
-
-Mise en route en terminal
-
-
-cd frontend
-cd dizalty
-npm run serve
+Test DIzalty réalisé par Jean-Jérôme JORNAT
