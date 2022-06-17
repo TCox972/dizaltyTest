@@ -153,14 +153,27 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  max-width: 840px;
+  margin: auto;
+}
 .logo {
   width: 300px;
+}
+
+.inscription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .notif {
   font-size: 18px;
   font-weight: 500;
   margin-top: 0px;
+  width: 65%;
+  text-align: center;
 }
 
 .countdown {
@@ -172,9 +185,8 @@ export default {
 
 .countdown > li {
   display: inline-block;
-
   list-style: none;
-  margin-right: 30px;
+  margin: 0px 15px;
 }
 
 .countdown > li > span {
@@ -194,7 +206,7 @@ export default {
 .field {
   margin: auto;
   position: relative;
-  width: 520px;
+  width: 65%;
   color: white;
 }
 
@@ -212,11 +224,11 @@ export default {
 }
 
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter, .slide-fade-leave-to
@@ -227,9 +239,9 @@ export default {
 
 input {
   height: 50px;
-  width: 350px;
-  padding-left: 20px;
-  padding-right: 145px;
+  width: 65%;
+  padding-left: 5%;
+  padding-right: 30%;
   color: white;
   font-size: 14px;
   font-weight: 600;
@@ -245,7 +257,7 @@ input::placeholder {
 button {
   position: absolute;
   bottom: 1px;
-  right: 5px;
+  right: 1%;
   background-color: white;
   border: none;
   height: 55px;
@@ -300,8 +312,11 @@ a {
   text-decoration-line: none;
 }
 
-#facebook, #twitter, #insta, #google {
-    transition: background-color 0.4s;
+#facebook,
+#twitter,
+#insta,
+#google {
+  transition: background-color 0.4s;
 }
 
 #facebook:hover {
@@ -313,18 +328,95 @@ a {
   border-color: rgb(85, 172, 230);
 }
 #insta:hover {
-  background-color: rgb(158, 111,80);
-  border-color: rgb(158,111, 80);
+  background-color: rgb(158, 111, 80);
+  border-color: rgb(158, 111, 80);
 }
 #google:hover {
   background-color: rgb(222, 75, 57);
   border-color: rgb(222, 75, 57);
 }
 
-
 .footer {
   margin-top: 48px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .countdown > li > span {
+    line-height: 48px;
+    font-size: 48px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .countdown {
+    margin: 16px 0px;
+  }
+  .notif {
+    margin-top: 24px;
+  }
+  .field {
+    width: 80%;
+  }
+  input {
+    width: 50%;
+    padding-right: 43%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 195px;
+  }
+
+  .countdown {
+    margin-top: 75px;
+  }
+
+  .countdown > li {
+    margin: 0px 5px;
+  }
+
+  .lbl {
+    font-size: 12px;
+  }
+
+  .notif {
+    font-size: 14px;
+    width: 80%;
+    margin-top: 2px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+  }
+
+  input {
+    height: 36px;
+    width: 98%;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  input::placeholder {
+    padding-left: 10px;
+  }
+
+  button {
+    position: relative;
+    height: 36px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 0px;
+    border: solid 3px white;
+    bottom: 0px;
+    right: 0px;
+  }
 }
 </style>
