@@ -24,28 +24,34 @@
     <div class="inscription">
       <p class="notif">{{ notif }}</p>
       <div class="field">
-        <input type="email" placeholder="Adresse mail" />
-        <button type="submit">S'INSCRIRE</button>
+        <transition name="slide-fade">
+          <div class="emailerror" v-if="emailerror">
+            <p>Veuillez fournir une adresse électronique valide</p>
+          </div>
+        </transition>
+
+        <input type="email" v-model="email" placeholder="Adresse mail" />
+        <button type="submit" @click="submitEmail">S'INSCRIRE</button>
       </div>
     </div>
     <div>
       <ul class="social">
-        <li>
+        <li id="facebook">
           <a href="#"
             ><font-awesome-icon class="icon" icon="fa-brands fa-facebook-f"
           /></a>
         </li>
-        <li>
+        <li id="twitter">
           <a href="#"
             ><font-awesome-icon class="icon" icon="fa-brands fa-twitter"
           /></a>
         </li>
-        <li>
+        <li id="insta">
           <a href="#"
             ><font-awesome-icon class="icon" icon="fa-brands fa-instagram"
           /></a>
         </li>
-        <li>
+        <li id="google">
           <a href="#"
             ><font-awesome-icon class="icon" icon="fa-brands fa-google"
           /></a>
@@ -53,7 +59,7 @@
       </ul>
     </div>
     <div class="footer">
-        <p>Juste histoire de faire un footer</p>
+      <p>Juste histoire de faire un footer</p>
     </div>
   </div>
 </template>
@@ -72,6 +78,8 @@ export default {
     labelmins: "MINUTES",
     scds: "",
     labelscds: "SECONDS",
+    email: "",
+    emailerror: false,
   }),
 
   created() {
@@ -125,6 +133,22 @@ export default {
       this.scds = scds;
     }, 1000);
   },
+
+  methods: {
+    submitEmail() {
+      const email = this.email;
+      const EMAIL_REGEX =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      if (!EMAIL_REGEX.test(email)) {
+        return (this.emailerror = true);
+      }
+
+      alert(
+        "Impossible de se connecter au serveur d'enregistrement. Veuillez réessayer plus tard."
+      );
+    },
+  },
 };
 </script>
 
@@ -156,7 +180,7 @@ export default {
 .countdown > li > span {
   line-height: 80px;
   font-size: 80px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .countdown > li > p {
@@ -172,6 +196,33 @@ export default {
   position: relative;
   width: 520px;
   color: white;
+}
+
+.emailerror {
+  border: solid 1px rgb(153, 15, 0);
+  margin: 0px 0px 12px 0px;
+  background-color: rgb(223, 169, 169);
+}
+
+.emailerror > p {
+  margin: 0px;
+  padding: 8px;
+  font-weight: 600;
+  color: rgb(153, 15, 0);
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(10px);
+  opacity: 0;
 }
 
 input {
@@ -202,6 +253,11 @@ button {
   padding: 0px 20px;
   font-size: 13px;
   font-weight: bold;
+}
+
+button:hover {
+  background-color: yellow;
+  cursor: pointer;
 }
 
 .icon {
@@ -244,8 +300,31 @@ a {
   text-decoration-line: none;
 }
 
+#facebook, #twitter, #insta, #google {
+    transition: background-color 0.4s;
+}
+
+#facebook:hover {
+  background-color: rgb(59, 89, 153);
+  border-color: rgb(59, 89, 153);
+}
+#twitter:hover {
+  background-color: rgb(85, 172, 239);
+  border-color: rgb(85, 172, 230);
+}
+#insta:hover {
+  background-color: rgb(158, 111,80);
+  border-color: rgb(158,111, 80);
+}
+#google:hover {
+  background-color: rgb(222, 75, 57);
+  border-color: rgb(222, 75, 57);
+}
+
+
 .footer {
-    margin-top: 48px;
+  margin-top: 48px;
   font-size: 13px;
+  font-weight: 500;
 }
 </style>
